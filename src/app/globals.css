@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.145 0 0);
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.145 0 0);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0 0);
+  --color-primary: oklch(0.205 0 0);
+  --color-primary-foreground: oklch(0.985 0 0);
+  --color-secondary: oklch(0.97 0 0);
+  --color-secondary-foreground: oklch(0.205 0 0);
+  --color-muted: oklch(0.97 0 0);
+  --color-muted-foreground: oklch(0.556 0 0);
+  --color-accent: oklch(0.97 0 0);
+  --color-accent-foreground: oklch(0.205 0 0);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-destructive-foreground: oklch(0.985 0 0);
+  --color-border: oklch(0.922 0 0);
+  --color-input: oklch(0.922 0 0);
+  --color-ring: oklch(0.708 0 0);
+  --radius: 0.625rem;
+  
+  /* Custom Westbourne Advisory Colors - Updated for clean white, grey, black scheme */
+  --color-primary-white: oklch(1 0 0);
+  --color-light-grey: oklch(0.95 0 0);
+  --color-medium-grey: oklch(0.7 0 0);
+  --color-dark-grey: oklch(0.4 0 0);
+  --color-black: oklch(0.15 0 0);
+  
+  /* Typography */
+  --font-heading: 'Buda', serif;
+  --font-body: 'Inter', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply text-gray-900;
+    font-family: var(--font-body);
+    background: transparent;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Typography utilities */
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
+  
+  /* Color utilities for new clean scheme */
+  .bg-primary-white {
+    background-color: oklch(var(--color-primary-white));
+  }
+  
+  .bg-light-grey {
+    background-color: oklch(var(--color-light-grey));
+  }
+  
+  .bg-medium-grey {
+    background-color: oklch(var(--color-medium-grey));
+  }
+  
+  .bg-dark-grey {
+    background-color: oklch(var(--color-dark-grey));
+  }
+  
+  .text-dark-grey {
+    color: oklch(var(--color-dark-grey));
+  }
+  
+  .text-medium-grey {
+    color: oklch(var(--color-medium-grey));
+  }
+  
+  .border-light-grey {
+    border-color: oklch(var(--color-light-grey));
+  }
+  
+  .border-medium-grey {
+    border-color: oklch(var(--color-medium-grey));
+  }
 }
