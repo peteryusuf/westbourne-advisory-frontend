@@ -51,7 +51,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: https: blob:",
               "media-src 'self' https:",
-              "connect-src 'self' https://api.westbourneadvisory.com https://strapi.westbourneadvisory.com https://aws-0-eu-west-2.pooler.supabase.com https://myqrmfkldofkwiiovcdh.supabase.co http://localhost:1337 https://vercel.live wss://vercel.live",
+              "connect-src 'self' https://westbourne-advisory-backend-production.up.railway.app https://aws-0-eu-west-2.pooler.supabase.com https://myqrmfkldofkwiiovcdh.supabase.co http://localhost:1337 https://vercel.live wss://vercel.live",
               "frame-ancestors 'none'",
             ].join('; ')
           }
@@ -64,7 +64,7 @@ const nextConfig = {
       beforeFiles: [
         {
           source: '/api/strapi/:path*',
-          destination: process.env.NEXT_PUBLIC_STRAPI_URL + '/api/:path*',
+          destination: 'https://westbourne-advisory-backend-production.up.railway.app/api/:path*',
         },
       ],
     };
