@@ -50,11 +50,13 @@ export function NavigationBar() {
             >
               Speak to Our Team
             </Button>
-            <Button 
-              className="bg-gray-900 hover:bg-black text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-semibold"
-            >
-              Start Your Journey
-            </Button>
+            <Link href="/start-journey">
+              <Button 
+                className="bg-gray-900 hover:bg-black text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-semibold"
+              >
+                Start Your Journey
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -92,11 +94,13 @@ export function NavigationBar() {
               >
                 Speak to Our Team
               </Button>
-              <Button 
-                className="w-full bg-gray-900 hover:bg-black text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
-              >
-                Start Your Journey
-              </Button>
+              <Link href="/start-journey">
+                <Button 
+                  className="w-full bg-gray-900 hover:bg-black text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+                >
+                  Start Your Journey
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -57,6 +57,22 @@ export interface FAQ {
   };
 }
 
+export interface LegalPage {
+  id: number;
+  attributes: {
+    title: string;
+    slug: string;
+    content: unknown; // Rich text content
+    pageType: 'terms-and-conditions' | 'privacy-policy' | 'cookie-policy' | 'legal-notice' | 'disclaimer';
+    metaTitle?: string;
+    metaDescription?: string;
+    lastUpdated: string;
+    publishedAt: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+
 class StrapiAPI {
   private baseURL: string;
   private token: string;
@@ -151,6 +167,25 @@ class StrapiAPI {
     }
 
     return this.fetch(`/faqs?${searchParams.toString()}`);
+  }
+
+  // Legal Pages
+  async getLegalPage(pageType: string) {
+    const searchParams = new URLSearchParams();
+    searchParams.append('filters[pageType][$eq]', pageType);
+    searchParams.append('filters[publishedAt][$notNull]', 'true');
+
+    const response = await this.fetch(`/legal-pages?${searchParams.toString()}`);
+    return response.data?.[0] || null;
+  }
+
+  async getLegalPageBySlug(slug: string) {
+    const searchParams = new URLSearchParams();
+    searchParams.append('filters[slug][$eq]', slug);
+    searchParams.append('filters[publishedAt][$notNull]', 'true');
+
+    const response = await this.fetch(`/legal-pages?${searchParams.toString()}`);
+    return response.data?.[0] || null;
   }
 }
 

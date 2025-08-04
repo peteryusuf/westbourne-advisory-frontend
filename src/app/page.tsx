@@ -40,12 +40,12 @@ export default function Home() {
               We make the complex simple, so you can focus on what matters most.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">
+              <a href="/start-journey" className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">
                 Start Your Journey
-              </button>
-              <button className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:border-gray-200 hover:bg-white hover:text-gray-900 transition-all duration-200">
+              </a>
+              <a href="#contact" className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:border-gray-200 hover:bg-white hover:text-gray-900 transition-all duration-200">
                 Speak to Our Team
-              </button>
+              </a>
             </div>
           </div>
         </section>

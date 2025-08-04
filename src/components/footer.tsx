@@ -61,6 +61,11 @@ export function Footer() {
             <h4 className="text-lg font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
+                <Link href="/privacy" className="text-gray-300 hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
                 <Link href="/terms" className="text-gray-300 hover:text-white transition-colors">
                   Terms & Conditions
                 </Link>
@@ -86,14 +91,14 @@ export function Footer() {
               © 2025 Westbourne Advisory. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Privacy Policy
+              </Link>
               <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Terms & Conditions
               </Link>
               <Link href="/cookies" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Cookie Policy
-              </Link>
-              <Link href="/legal-notice" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Legal Notice
               </Link>
             </div>
           </div>
