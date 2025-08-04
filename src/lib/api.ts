@@ -3,24 +3,25 @@ const STRAPI_TOKEN = process.env.NEXT_PUBLIC_STRAPI_TOKEN || '';
 
 export interface BlogPost {
   id: number;
-  attributes: {
-    title: string;
-    slug: string;
-    excerpt: string;
-    content: string;
-    author: string;
-    category: string;
-    tags: string;
-    seoTitle: string;
-    seoDescription: string;
-    status: 'draft' | 'published';
-    publishedAt: string;
-    featuredImage: {
-      data: {
-        attributes: {
-          url: string;
-          alternativeText: string;
-        };
+  documentId: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: any; // Strapi rich text format
+  author: string;
+  category: string;
+  tags: string;
+  seoTitle: string;
+  seoDescription: string;
+  status: 'draft' | 'published';
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+  featuredImage?: {
+    data: {
+      attributes: {
+        url: string;
+        alternativeText: string;
       };
     };
   };
@@ -80,9 +81,10 @@ class StrapiAPI {
       ...options,
       headers,
     });
-
+    
     if (!response.ok) {
-      throw new Error(`API request failed: ${response.statusText}`);
+      const errorText = await response.text();
+      throw new Error(`API request failed: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     return response.json();
@@ -122,7 +124,7 @@ class StrapiAPI {
 
   async getBlogCategories() {
     const response = await this.fetch('/blog-posts?filters[status][$eq]=published');
-    const categories = new Set(response.data?.map((post: BlogPost) => post.attributes.category) || []);
+    const categories = new Set(response.data?.map((post: BlogPost) => post.category) || []);
     return Array.from(categories).filter(Boolean);
   }
 

@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Search, Filter } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { BlogCard } from '@/components/blog-card';
+import { NavigationBar } from '@/components/navigation-bar';
+import { Footer } from '@/components/footer';
 import { strapiAPI, BlogPost } from '@/lib/api';
 
 export default function BlogPage() {
@@ -17,6 +19,9 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log('Fetching blog data from Strapi...');
+        console.log('Strapi URL:', process.env.NEXT_PUBLIC_STRAPI_URL);
+        
         const [postsResponse, categoriesResponse] = await Promise.all([
           strapiAPI.getBlogPosts({
             page: currentPage,
@@ -27,63 +32,19 @@ export default function BlogPage() {
           strapiAPI.getBlogCategories(),
         ]);
 
+        console.log('Posts response:', postsResponse);
+        console.log('Categories response:', categoriesResponse);
+
         setPosts(postsResponse.data || []);
         setCategories(categoriesResponse as string[]);
         setTotalPages(postsResponse.meta?.pagination?.pageCount || 1);
       } catch (error) {
         console.error('Error fetching blog data:', error);
-        // Fallback to default posts if API fails
-        setPosts([
-          {
-            id: 1,
-            attributes: {
-              title: "Understanding Parental Orders in UK Surrogacy",
-              slug: "understanding-parental-orders",
-              excerpt: "A comprehensive guide to parental orders and their importance in the surrogacy process.",
-              content: "Full content here...",
-              author: "Westbourne Advisory",
-              category: "Legal Process",
-              tags: "parental orders, surrogacy, legal",
-              seoTitle: "Parental Orders UK Surrogacy",
-              seoDescription: "Learn about parental orders in UK surrogacy",
-              status: "published",
-              publishedAt: "2024-01-15",
-              featuredImage: {
-                data: {
-                  attributes: {
-                    url: "",
-                    alternativeText: "Parental Orders"
-                  }
-                }
-              }
-            }
-          },
-          {
-            id: 2,
-            attributes: {
-              title: "The Legal Timeline of Surrogacy in the UK",
-              slug: "legal-timeline-surrogacy",
-              excerpt: "What to expect at each stage of your surrogacy legal journey.",
-              content: "Full content here...",
-              author: "Westbourne Advisory",
-              category: "Timing",
-              tags: "timeline, legal process, surrogacy",
-              seoTitle: "Surrogacy Legal Timeline UK",
-              seoDescription: "UK surrogacy legal timeline guide",
-              status: "published",
-              publishedAt: "2024-01-10",
-              featuredImage: {
-                data: {
-                  attributes: {
-                    url: "",
-                    alternativeText: "Legal Timeline"
-                  }
-                }
-              }
-            }
-          }
-        ]);
-        setCategories(["Legal Process", "Timing", "Requirements"]);
+        console.error('Error details:', error);
+        
+        // Set empty arrays if API fails - no fallback content
+        setPosts([]);
+        setCategories([]);
         setTotalPages(1);
       } finally {
         setLoading(false);
@@ -147,8 +108,10 @@ export default function BlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gray-50">
+      <NavigationBar />
+      <main className="py-20">
+        <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h1 className="text-4xl font-bold text-gray-900">Blog</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -239,7 +202,9 @@ export default function BlogPage() {
             </div>
           </div>
         )}
-      </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 } 
