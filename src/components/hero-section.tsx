@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, MessageCircle, Check, Shield, Star, Users, Clock, Heart } from 'lucide-react';
+import { ArrowRight, MessageCircle, Users, Heart } from 'lucide-react';
 
 export default function HeroSection() {
   return (
@@ -63,7 +63,7 @@ export default function HeroSection() {
                 <div className="space-y-2">
                   <h3 className="text-2xl font-bold text-white font-heading">Building Families</h3>
                   <p className="text-gray-200 leading-relaxed">
-                    We've helped families navigate their surrogacy journey with confidence and peace of mind.
+                    We&apos;ve helped families navigate their surrogacy journey with confidence and peace of mind.
                   </p>
                 </div>
               </div>

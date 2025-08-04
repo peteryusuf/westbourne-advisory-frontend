@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://westbourneadvisory.com'
   
   // Get dynamic blog posts
-  let blogPosts: any[] = []
+  let blogPosts: Array<{ slug: string; updatedAt: string }> = []
   try {
     const postsResponse = await strapiAPI.getBlogPosts({ pageSize: 100 })
     blogPosts = postsResponse.data || []

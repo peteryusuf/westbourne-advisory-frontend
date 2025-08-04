@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { BlogPost } from "@/lib/api";
 
 interface BlogCardProps {
@@ -19,16 +20,19 @@ export function BlogCard({ post }: BlogCardProps) {
     });
   };
 
-  const getTextContent = (content: any): string => {
+  const getTextContent = (content: unknown): string => {
     if (typeof content === 'string') return content;
     if (Array.isArray(content)) {
       return content.map(getTextContent).join(' ');
     }
-    if (content?.children) {
-      return getTextContent(content.children);
-    }
-    if (content?.text) {
-      return content.text;
+    if (typeof content === 'object' && content !== null) {
+      const obj = content as { children?: unknown; text?: string };
+      if (obj.children) {
+        return getTextContent(obj.children);
+      }
+      if (obj.text) {
+        return obj.text;
+      }
     }
     return '';
   };
@@ -42,10 +46,12 @@ export function BlogCard({ post }: BlogCardProps) {
         <CardHeader className="p-0">
           <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-t-lg overflow-hidden">
             {post.featuredImage?.data?.attributes?.url ? (
-              <img
+              <Image
                 src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${post.featuredImage.data.attributes.url}`}
                 alt={post.featuredImage.data.attributes.alternativeText || post.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">

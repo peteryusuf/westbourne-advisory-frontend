@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 
 interface VideoBackgroundSimpleProps {
   className?: string;
@@ -16,13 +16,13 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
   });
 
   // Define video sections with their corresponding videos
-  const videoSections = [
+  const videoSections = useMemo(() => [
     { selector: 'section[data-section="hero"]', videoSrc: '/video_1.mp4', name: 'Hero' },
     { selector: 'section[data-section="how-it-works"]', videoSrc: '/video_2.mp4', name: 'How It Works' },
     { selector: 'section[data-section="testimonials"]', videoSrc: '/video_3.mp4', name: 'Testimonials' },
     { selector: 'section[data-section="faq"]', videoSrc: '/video_4.mp4', name: 'FAQ' },
     { selector: 'section[data-section="contact"]', videoSrc: '/video_2.mp4', name: 'Contact' }
-  ];
+  ], []);
 
   // Set up scroll-based video switching with debouncing
   useEffect(() => {
@@ -82,7 +82,7 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(switchTimeout);
     };
-  }, [currentVideo]);
+  }, [currentVideo, videoSections]);
 
   // Video management effects
   useEffect(() => {
@@ -103,7 +103,7 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
       video.play().then(() => {
         console.log('Video playing successfully');
         updateStatus();
-      }).catch((err: any) => {
+      }).catch((err: unknown) => {
         console.error('Play failed:', err);
         updateStatus();
       });

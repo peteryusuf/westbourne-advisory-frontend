@@ -7,7 +7,7 @@ export interface BlogPost {
   title: string;
   slug: string;
   excerpt: string;
-  content: any; // Strapi rich text format
+  content: unknown; // Strapi rich text format
   author: string;
   category: string;
   tags: string;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,7 +8,11 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-// Buda font is added via direct import since it's not available in next/font/google
+const buda = localFont({
+  src: "../../public/fonts/Buda-Light.ttf",
+  variable: "--font-buda",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Westbourne Advisory - Expert Surrogacy Legal Services UK",
@@ -74,9 +79,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Buda:wght@300&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -111,7 +113,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${inter.variable} ${buda.variable} antialiased`}
       >
         {children}
       </body>

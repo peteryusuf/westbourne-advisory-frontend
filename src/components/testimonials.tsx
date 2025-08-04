@@ -71,7 +71,7 @@ export default function Testimonials() {
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-4xl font-bold text-gray-900 font-heading">What Our Clients Say</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Don't just take our word for it. Here's what intended parents say about their experience with Westbourne Advisory.
+              Don&apos;t just take our word for it. Here&apos;s what intended parents say about their experience with Westbourne Advisory.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -110,7 +110,7 @@ export default function Testimonials() {
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl font-bold text-white font-heading">What Our Clients Say</h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what intended parents say about their experience with Westbourne Advisory.
+            Don&apos;t just take our word for it. Here&apos;s what intended parents say about their experience with Westbourne Advisory.
           </p>
         </div>
 
@@ -139,7 +139,7 @@ export default function Testimonials() {
 
                 {/* Quote */}
                 <p className="text-gray-600 leading-relaxed text-lg">
-                  "{testimonial.attributes.quote}"
+                  &ldquo;{testimonial.attributes.quote}&rdquo;
                 </p>
 
                 {/* Star rating */}

@@ -9,7 +9,7 @@ export default function ContactSection() {
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl font-bold text-white font-heading">Start Your Journey Today</h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Get in touch with our expert legal team to discuss your surrogacy journey. We're here to guide you every step of the way.
+            Get in touch with our expert legal team to discuss your surrogacy journey. We&apos;re here to guide you every step of the way.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ export default function ContactSection() {
                   name="message"
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
-                  placeholder="Share your story and what you're looking for..."
+                  placeholder="Share your story and what you&apos;re looking for..."
                 ></textarea>
               </div>
 
@@ -79,7 +79,7 @@ export default function ContactSection() {
             </form>
 
             <p className="text-sm text-gray-500 text-center mt-6">
-              We'll get back to you within 24 hours. All consultations are confidential.
+              We&apos;ll get back to you within 24 hours. All consultations are confidential.
             </p>
           </div>
         </div>

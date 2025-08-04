@@ -28,8 +28,9 @@ async function getRelatedPosts(currentSlug: string): Promise<BlogPost[]> {
   }
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getBlogPost(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
   
   if (!post) {
     return {
@@ -51,10 +52,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const [post, relatedPosts] = await Promise.all([
-    getBlogPost(params.slug),
-    getRelatedPosts(params.slug)
+    getBlogPost(slug),
+    getRelatedPosts(slug)
   ]);
 
   if (!post) {
@@ -70,16 +72,19 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   };
 
   // Calculate reading time based on content
-  const getTextContent = (content: any): string => {
+  const getTextContent = (content: unknown): string => {
     if (typeof content === 'string') return content;
     if (Array.isArray(content)) {
       return content.map(getTextContent).join(' ');
     }
-    if (content?.children) {
-      return getTextContent(content.children);
-    }
-    if (content?.text) {
-      return content.text;
+    if (typeof content === 'object' && content !== null) {
+      const obj = content as { children?: unknown; text?: string };
+      if (obj.children) {
+        return getTextContent(obj.children);
+      }
+      if (obj.text) {
+        return obj.text;
+      }
     }
     return '';
   };
@@ -88,22 +93,31 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   const readingTime = Math.ceil(textContent.split(' ').length / 200);
 
   // Convert Strapi rich text to HTML (basic implementation)
-  const renderContent = (content: any): string => {
+  const renderContent = (content: unknown): string => {
     if (typeof content === 'string') return content;
     if (Array.isArray(content)) {
       return content.map(renderContent).join('');
     }
-    if (content?.type === 'paragraph') {
-      const text = content.children?.map((child: any) => child.text || '').join('') || '';
-      return `<p>${text}</p>`;
-    }
-    if (content?.type === 'heading') {
-      const level = content.level || 2;
-      const text = content.children?.map((child: any) => child.text || '').join('') || '';
-      return `<h${level}>${text}</h${level}>`;
-    }
-    if (content?.text) {
-      return content.text;
+    if (typeof content === 'object' && content !== null) {
+      const obj = content as { 
+        type?: string; 
+        level?: number; 
+        children?: Array<{ text?: string }>; 
+        text?: string 
+      };
+      
+      if (obj.type === 'paragraph') {
+        const text = obj.children?.map((child) => child.text || '').join('') || '';
+        return `<p>${text}</p>`;
+      }
+      if (obj.type === 'heading') {
+        const level = obj.level || 2;
+        const text = obj.children?.map((child) => child.text || '').join('') || '';
+        return `<h${level}>${text}</h${level}>`;
+      }
+      if (obj.text) {
+        return obj.text;
+      }
     }
     return '';
   };
@@ -166,7 +180,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <div 
             className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: htmlContent }}
+            dangerouslySetInnerHTML={{ __html: String(htmlContent) }}
           />
           
           {/* Share and Author */}
