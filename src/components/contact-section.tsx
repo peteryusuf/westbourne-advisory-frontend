@@ -22,11 +22,11 @@ export default function ContactSection() {
 
         <div className="max-w-2xl mx-auto">
           <div 
-            className="rounded-2xl shadow-xl p-8 border border-white border-opacity-20"
+            className="rounded-2xl shadow-xl p-8 border border-white border-opacity-30"
             style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.2)',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)'
+              backgroundColor: 'rgba(0, 0, 0, 0.4)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)'
             }}
           >
             <form className="space-y-6">
@@ -39,7 +39,7 @@ export default function ContactSection() {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full px-4 py-3 bg-white text-gray-900 placeholder-gray-600 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 font-medium shadow-lg"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -51,7 +51,7 @@ export default function ContactSection() {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full px-4 py-3 bg-white text-gray-900 placeholder-gray-600 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 font-medium shadow-lg"
                     placeholder="Enter your email address"
                   />
                 </div>
@@ -65,7 +65,7 @@ export default function ContactSection() {
                   type="tel"
                   id="phone"
                   name="phone"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 bg-white text-gray-900 placeholder-gray-600 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 font-medium shadow-lg"
                   placeholder="Enter your phone number"
                 />
               </div>
@@ -78,7 +78,7 @@ export default function ContactSection() {
                   id="message"
                   name="message"
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-white text-gray-900 placeholder-gray-600 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 resize-none font-medium shadow-lg"
                   placeholder="Share your story and what you&apos;re looking for..."
                 ></textarea>
               </div>
@@ -92,7 +92,7 @@ export default function ContactSection() {
               </button>
             </form>
 
-            <p className="text-sm text-gray-500 text-center mt-6">
+            <p className="text-sm text-gray-300 text-center mt-6">
               We&apos;ll get back to you within 24 hours. All consultations are confidential.
             </p>
           </div>

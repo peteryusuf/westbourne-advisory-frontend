@@ -52,7 +52,7 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
     const findMostVisibleSection = () => {
       let maxRatio = 0;
       let mostVisibleSection = '';
-      let debugInfo: any[] = [];
+      const debugInfo: Array<{name: string; video: string; ratio: number; visible: boolean}> = [];
 
       videoSections.forEach(section => {
         const element = document.querySelector(section.selector);
