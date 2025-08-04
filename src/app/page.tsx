@@ -19,8 +19,9 @@ export default function Home() {
       <main className="relative z-20">
         {/* Hero Section */}
         <section 
+          id="hero"
           data-section="hero"
-          className="flex items-center justify-center min-h-screen px-4"
+          className="flex items-center justify-center min-h-screen px-4 py-20"
         >
           <div 
             className="text-center p-12 rounded-2xl max-w-4xl border border-white border-opacity-20"
@@ -50,22 +51,22 @@ export default function Home() {
         </section>
 
         {/* How It Works Section */}
-        <section data-section="how-it-works">
+        <section id="how-it-works" data-section="how-it-works">
           <HowItWorks />
         </section>
 
         {/* Testimonials Section */}
-        <section data-section="testimonials">
+        <section id="testimonials" data-section="testimonials">
           <Testimonials />
         </section>
 
         {/* FAQ Section */}
-        <section data-section="faq">
+        <section id="faq" data-section="faq">
           <FAQSection />
         </section>
 
         {/* Contact Section */}
-        <section data-section="contact">
+        <section id="contact" data-section="contact">
           <ContactSection />
         </section>
       </main>

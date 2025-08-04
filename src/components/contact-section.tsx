@@ -4,17 +4,31 @@ import { Send } from 'lucide-react';
 
 export default function ContactSection() {
   return (
-    <section className="py-20">
+    <section className="py-32">
       <div className="container mx-auto px-4">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl font-bold text-white font-heading">Start Your Journey Today</h2>
+        <div 
+          className="text-center p-12 rounded-2xl max-w-4xl mx-auto mb-16 border border-white border-opacity-20"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)'
+          }}
+        >
+          <h2 className="text-4xl font-bold text-white font-heading mb-6">Start Your Journey Today</h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             Get in touch with our expert legal team to discuss your surrogacy journey. We&apos;re here to guide you every step of the way.
           </p>
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white border-opacity-20">
+          <div 
+            className="rounded-2xl shadow-xl p-8 border border-white border-opacity-20"
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)'
+            }}
+          >
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>

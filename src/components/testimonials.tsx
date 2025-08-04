@@ -105,18 +105,33 @@ export default function Testimonials() {
   }
 
   return (
-    <section className="py-20">
+    <section className="py-32">
       <div className="container mx-auto px-4">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl font-bold text-white font-heading">What Our Clients Say</h2>
+        <div 
+          className="text-center p-12 rounded-2xl max-w-4xl mx-auto mb-16 border border-white border-opacity-20"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)'
+          }}
+        >
+          <h2 className="text-4xl font-bold text-white font-heading mb-6">What Our Clients Say</h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             Don&apos;t just take our word for it. Here&apos;s what intended parents say about their experience with Westbourne Advisory.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-black bg-opacity-20 backdrop-blur-sm rounded-2xl shadow-lg p-8 relative border border-white border-opacity-20">
+            <div 
+              key={testimonial.id} 
+              className="rounded-2xl shadow-lg p-8 relative border border-white border-opacity-20"
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)'
+              }}
+            >
               {/* Quote icon */}
               <div className="absolute top-6 right-6 text-gray-300">
                 <Quote className="w-12 h-12" />
@@ -132,13 +147,13 @@ export default function Testimonials() {
                     {!testimonial.attributes.avatar?.data && testimonial.attributes.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900">{testimonial.attributes.name}</div>
-                    <div className="text-sm text-gray-500">{testimonial.attributes.role}</div>
+                    <div className="font-semibold text-white">{testimonial.attributes.name}</div>
+                    <div className="text-sm text-gray-300">{testimonial.attributes.role}</div>
                   </div>
                 </div>
 
                 {/* Quote */}
-                <p className="text-gray-600 leading-relaxed text-lg">
+                <p className="text-gray-200 leading-relaxed text-lg">
                   &ldquo;{testimonial.attributes.quote}&rdquo;
                 </p>
 

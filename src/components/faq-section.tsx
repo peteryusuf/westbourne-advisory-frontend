@@ -53,6 +53,60 @@ export default function FAQSection() {
               category: "Timing",
               order: 4
             }
+          },
+          {
+            id: 5,
+            attributes: {
+              question: "What costs are involved in surrogacy?",
+              answer: "Surrogacy costs include legal fees, medical expenses, and reasonable expenses for the surrogate. Commercial surrogacy is prohibited in the UK, but surrogates can be reimbursed for legitimate expenses like medical care, maternity clothes, and lost earnings.",
+              category: "Financial",
+              order: 5
+            }
+          },
+          {
+            id: 6,
+            attributes: {
+              question: "Do we need separate legal representation?",
+              answer: "Yes, it's essential that intended parents and surrogates have independent legal representation. This ensures both parties fully understand their rights and obligations, and helps prevent conflicts of interest.",
+              category: "Legal Requirements",
+              order: 6
+            }
+          },
+          {
+            id: 7,
+            attributes: {
+              question: "What happens if the surrogate changes her mind?",
+              answer: "In the UK, the surrogate has the legal right to keep the baby until a parental order is granted. However, with proper legal agreements and counseling in place, this situation is extremely rare. We help manage these risks through comprehensive preparation.",
+              category: "Legal Process",
+              order: 7
+            }
+          },
+          {
+            id: 8,
+            attributes: {
+              question: "Can international surrogacy arrangements be recognized in the UK?",
+              answer: "International surrogacy can be complex, with different countries having varying laws. UK courts can grant parental orders for children born abroad, but the process requires careful legal planning and compliance with both jurisdictions.",
+              category: "International",
+              order: 8
+            }
+          },
+          {
+            id: 9,
+            attributes: {
+              question: "What medical decisions can intended parents make during pregnancy?",
+              answer: "During pregnancy, the surrogate retains the right to make medical decisions about her body and the pregnancy. However, surrogacy agreements can outline preferences and expectations, and good communication is essential throughout the process.",
+              category: "Medical",
+              order: 9
+            }
+          },
+          {
+            id: 10,
+            attributes: {
+              question: "How do we find a suitable surrogate?",
+              answer: "Surrogates can be found through licensed agencies, support groups, or personal connections. We provide guidance on the legal requirements and help ensure any arrangements comply with UK law and protect all parties involved.",
+              category: "Process",
+              order: 10
+            }
           }
         ]);
       } finally {
@@ -92,34 +146,56 @@ export default function FAQSection() {
   }
 
   return (
-    <section className="py-20">
+    <section className="py-32">
       <div className="container mx-auto px-4">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl font-bold text-gray-900">Frequently Asked Questions</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div 
+          className="text-center p-12 rounded-2xl max-w-4xl mx-auto mb-16 border border-white border-opacity-20"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)'
+          }}
+        >
+          <h2 className="text-4xl font-bold text-white font-heading mb-6">Frequently Asked Questions</h2>
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             Get answers to the most common questions about surrogacy law in the UK.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
-            <div key={faq.id} className="border border-gray-200 rounded-lg overflow-hidden">
+            <div 
+              key={faq.id} 
+              className="rounded-lg overflow-hidden border border-white border-opacity-20"
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)'
+              }}
+            >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between"
+                className="w-full px-6 py-4 text-left hover:bg-white hover:bg-opacity-10 transition-colors duration-200 flex items-center justify-between"
               >
-                <span className="font-semibold text-gray-900 text-lg">
+                <span className="font-semibold text-white text-lg">
                   {faq.attributes.question}
                 </span>
                 {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-gray-500" />
+                  <ChevronUp className="w-5 h-5 text-gray-300" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-gray-500" />
+                  <ChevronDown className="w-5 h-5 text-gray-300" />
                 )}
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-4 bg-gray-50">
-                  <p className="text-gray-600 leading-relaxed">
+                <div 
+                  className="px-6 pb-4"
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)'
+                  }}
+                >
+                  <p className="text-gray-200 leading-relaxed">
                     {faq.attributes.answer}
                   </p>
                 </div>

@@ -28,10 +28,17 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-32">
       <div className="container mx-auto px-4">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl font-bold text-white font-heading">How It Works</h2>
+        <div 
+          className="text-center p-12 rounded-2xl max-w-4xl mx-auto mb-16 border border-white border-opacity-20"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)'
+          }}
+        >
+          <h2 className="text-4xl font-bold text-white font-heading mb-6">How It Works</h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             Our proven three-step process has helped families navigate the legal aspects of surrogacy with confidence and clarity.
           </p>
@@ -39,7 +46,15 @@ export default function HowItWorks() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div key={index} className="text-center space-y-6">
+            <div 
+              key={index} 
+              className="text-center space-y-6 p-8 rounded-2xl border border-white border-opacity-20"
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)'
+              }}
+            >
               {/* Number circle */}
               <div className={`w-20 h-20 bg-gradient-to-br ${step.color} rounded-full flex items-center justify-center mx-auto shadow-lg`}>
                 <span className="text-2xl font-bold text-white">{step.number}</span>

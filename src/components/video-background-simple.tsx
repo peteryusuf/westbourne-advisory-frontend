@@ -14,6 +14,7 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
     playing: false,
     error: null as string | null
   });
+  const [preloadedVideos, setPreloadedVideos] = useState<Set<string>>(new Set());
 
   // Define video sections with their corresponding videos
   const videoSections = useMemo(() => [
@@ -24,12 +25,34 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
     { selector: 'section[data-section="contact"]', videoSrc: '/video_2.mp4', name: 'Contact' }
   ], []);
 
+  // Preload all videos
+  useEffect(() => {
+    const preloadVideo = (src: string) => {
+      if (!preloadedVideos.has(src)) {
+        const video = document.createElement('video');
+        video.muted = true;
+        video.preload = 'metadata';
+        video.src = src;
+        video.addEventListener('loadedmetadata', () => {
+          setPreloadedVideos(prev => new Set(prev).add(src));
+          console.log(`Preloaded video: ${src}`);
+        });
+        video.load();
+      }
+    };
+
+    // Get unique video sources
+    const uniqueVideos = [...new Set(videoSections.map(section => section.videoSrc))];
+    uniqueVideos.forEach(preloadVideo);
+  }, [videoSections, preloadedVideos]);
+
   // Set up scroll-based video switching with debouncing
   useEffect(() => {
     // Find which section is most visible
     const findMostVisibleSection = () => {
       let maxRatio = 0;
       let mostVisibleSection = '';
+      let debugInfo: any[] = [];
 
       videoSections.forEach(section => {
         const element = document.querySelector(section.selector);
@@ -43,12 +66,24 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
           const visibleHeight = Math.max(0, visibleBottom - visibleTop);
           const ratio = visibleHeight / windowHeight;
           
-          if (ratio > maxRatio && ratio > 0.4) { // Must be at least 40% visible
+          debugInfo.push({
+            name: section.name,
+            video: section.videoSrc,
+            ratio: Math.round(ratio * 100),
+            visible: ratio > 0.2
+          });
+          
+          if (ratio > maxRatio && ratio > 0.2) { // Lower threshold to ensure all sections trigger
             maxRatio = ratio;
             mostVisibleSection = section.videoSrc;
           }
         }
       });
+
+      // Log debug info occasionally
+      if (Math.random() < 0.1) { // 10% chance to log
+        console.log('📊 Section visibility:', debugInfo);
+      }
 
       return mostVisibleSection;
     };
@@ -59,10 +94,10 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
       clearTimeout(switchTimeout);
       switchTimeout = setTimeout(() => {
         if (newVideo && newVideo !== currentVideo) {
-          console.log(`Switching to video: ${newVideo}`);
+          console.log(`🎥 Switching from ${currentVideo} to ${newVideo}`);
           setCurrentVideo(newVideo);
         }
-      }, 200); // 200ms debounce
+      }, 300); // Longer debounce for more stable transitions
     };
 
     const handleScroll = () => {
@@ -160,6 +195,7 @@ export function VideoBackgroundSimple({ className = "" }: VideoBackgroundSimpleP
           <div>Current: {currentVideo}</div>
           <div>Loaded: {videoStatus.loaded ? '✅' : '❌'}</div>
           <div>Playing: {videoStatus.playing ? '✅' : '❌'}</div>
+          <div>Preloaded: {preloadedVideos.size}/4</div>
           {videoStatus.error && <div className="text-red-300">Error: {videoStatus.error}</div>}
         </div>
       )}
